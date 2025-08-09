@@ -1,74 +1,81 @@
-# ⚠️ Importante!!!
-Você pode escolher qualquer um dos desafios para desenvolver. Sinta-se à vontade para começar pelo desafio que mais lhe interessa.
+# Desafio Super Trunfo: Lógica e Interatividade em C
 
-# Desafio Super Trunfo - Países - Comparação das Cartas
+Olá\! Bem-vindo ao meu projeto de lógica para o jogo Super Trunfo.
 
-Bem-vindo ao desafio "Super Trunfo - Países"! Neste projeto, você desenvolverá um sistema para comparar cartas baseadas em atributos de cidades. O desafio é dividido em três níveis: Novato, Aventureiro e Mestre. Cada nível adiciona novas funcionalidades e complexidades, permitindo um aprendizado progressivo.
+Este repositório contém a minha solução para o **Nível Aventureiro** do desafio. Depois de ter construído a base do cadastro de cartas no nível anterior, o meu foco aqui foi dar vida ao jogo, tornando-o verdadeiramente interativo e aplicando regras de comparação.
 
-## 🏅 Nível Novato
+## 🎯 O Desafio Proposto
 
-No nível Novato, você começará implementando a lógica básica de comparação entre cartas utilizando estruturas de decisão `if` e `if-else`.
+A missão desta vez era evoluir o programa, implementando as seguintes funcionalidades:
 
-### 🚩 Objetivos:
-- **Cadastro de Cartas:** O sistema permitirá ao usuário cadastrar cartas de cidades, incluindo informações como estado, código da carta, nome da cidade, população, área, PIB e número de pontos turísticos.
-- **Comparação de Cartas:** O sistema comparará os atributos de duas cartas e determinará a vencedora com base em uma propriedade específica (população, área, PIB, etc.), escolhida no código.
-- **Exibição de Resultados:** Após a comparação, o sistema exibirá qual carta venceu com base na regra: maior valor vence, exceto em densidade populacional, onde o menor valor é o vencedor.
+  - Criar um **menu interativo** para que eu, como jogador, pudesse escolher qual atributo comparar.
+  - Utilizar a estrutura `switch` para gerenciar as opções do menu.
+  - Aplicar a lógica de comparação com `if-else if-else` para determinar a carta vencedora.
+  - Lidar com uma **regra especial**: para o atributo "Densidade Demográfica", a carta com o *menor* valor deveria ser a vencedora, ao contrário das outras.
 
-### 📥 Entrada de Dados:
-- Os dados das cartas serão inseridos manualmente via terminal.
-- O sistema solicitará interativamente as informações de cada carta.
+## 💡 Minha Abordagem e Como o Código Foi Pensado
 
-### 📤 Saída de Dados:
-- Após o cadastro, as propriedades da cidade serão exibidas de forma organizada.
-- O resultado da comparação será mostrado, indicando a carta vencedora.
+Para resolver o desafio, estruturei meu código `logicaSuperTrunfo.c` da seguinte forma:
 
----
+### 1\. Dados "Chumbados" no Código (Hardcoded)
 
-## 🏅 Nível Aventureiro
+Para focar 100% na lógica do menu e na comparação, e seguindo a sugestão do desafio, eu decidi não pedir os dados para o usuário desta vez. Em vez disso, "chumbei" (termo que usamos para definir dados fixos) os valores de duas cidades, São Paulo e Rio de Janeiro, diretamente nas variáveis no início do programa. Isso deixou o código mais limpo e direto ao ponto.
 
-No nível Aventureiro, você expandirá o sistema para incluir a comparação aninhada e a criação de um menu interativo usando `switch`.
+### 2\. O Menu Principal com `do-while`
 
-### 🆕 Diferença em relação ao Nível Novato:
-- **Menu Interativo:** O usuário poderá escolher diferentes atributos para comparação através de um menu.
-- **Comparação Aninhada:** Implementação de lógica de comparação mais complexa, utilizando estruturas aninhadas para tomar decisões baseadas em múltiplos atributos.
+Eu queria que o jogador pudesse fazer várias comparações sem ter que reiniciar o programa a cada rodada. A escolha perfeita para isso foi o laço `do-while`. Ele garante que o menu de opções apareça pelo menos uma vez e continue sendo exibido no final de cada comparação, até que eu decida sair digitando a opção `0`.
 
-### 🚩 Novas Funcionalidades:
-- **Cadastro de Cartas:** Similar ao nível Novato, com a adição de comparação de múltiplos atributos.
-- **Menu Interativo:** Uso de `switch` para criar um menu que permite ao jogador escolher os atributos a serem comparados.
-- **Exibição de Resultados:** O sistema exibirá o resultado da comparação, indicando qual carta venceu e qual atributo foi utilizado.
+### 3\. A Mágica do `switch`
 
----
+O coração da interatividade do meu programa é a estrutura `switch`. Achei que essa foi a abordagem mais elegante e organizada para lidar com a escolha do jogador. Em vez de criar uma cadeia gigante e confusa de `if`s, o `switch` avalia a opção escolhida e me leva diretamente para o bloco de código correto que faz a comparação daquele atributo.
 
-## 🏅 Nível Mestre
+### 4\. A Lógica de Comparação com `if-else`
 
-No nível Mestre, o desafio se intensifica com a adição de funcionalidades avançadas, como menus dinâmicos e lógica de decisão complexa com operadores ternários.
+Dentro de cada `case` do `switch`, eu implementei a lógica de decisão. Usei uma estrutura `if-else if-else` por ser a mais completa. Ela cobre todas as três possibilidades de resultado:
 
-### 🆕 Diferença em relação ao Nível Aventureiro:
-- **Escolha de Dois Atributos:** O usuário poderá escolher dois atributos para comparação entre as cartas.
-- **Lógica de Decisão Complexa:** Implementação de estruturas de decisão aninhadas e encadeadas, além do uso de operadores ternários para determinar a carta vencedora.
-- **Menus Dinâmicos:** Os menus serão dinâmicos, permitindo uma navegação fluida entre as opções de comparação.
+  - `if`: A carta 1 vence.
+  - `else if`: A carta 2 vence.
+  - `else`: Houve um empate.
 
-### 🚩 Novas Funcionalidades:
-- **Comparação de Dois Atributos:** O sistema comparará dois atributos simultaneamente para determinar a carta vencedora.
-- **Lógica Avançada:** Uso de operadores ternários e lógica aninhada para lidar com comparações complexas.
-- **Empates:** O sistema será capaz de lidar com empates, exibindo mensagens apropriadas.
-- **Exibição de Resultados:** Exibição dos resultados das comparações de forma clara e interativa.
+### 5\. A Regra Especial da Densidade
 
----
+Um ponto de atenção do desafio era a regra invertida para a Densidade Demográfica, onde "menos é mais". Para resolver isso, no `case 5`, eu simplesmente inverti o operador da comparação: em vez de usar `>` (maior que), eu usei `<` (menor que) para definir o vencedor. Foi uma solução simples e eficaz.
 
-## 📋 Requisitos Funcionais Comuns
-- **Cadastro de Cartas:** O sistema deve permitir o cadastro de cartas com as informações necessárias.
-- **Comparação:** O sistema deve comparar as cartas e determinar a vencedora com base nas regras estabelecidas.
-- **Exibição de Resultados:** Os resultados devem ser exibidos de forma clara, indicando a carta vencedora.
+### 6\. Pequenos Detalhes de Usabilidade
 
-## 📌 Requisitos Não Funcionais Comuns
-- **Usabilidade:** A interface do usuário deve ser simples e intuitiva.
-- **Performance:** O sistema deve executar operações sem atrasos perceptíveis.
-- **Manutenibilidade:** O código deve ser bem estruturado e documentado.
-- **Confiabilidade:** O sistema deve ser robusto e capaz de lidar com entradas inválidas de forma adequada.
+Pensando na experiência de quem joga, adicionei duas pequenas melhorias:
 
----
+  - Um `default` no `switch` para avisar o jogador caso ele digite uma opção que não existe no menu.
+  - Uma pausa "Pressione Enter para continuar..." para que o resultado da comparação não desapareça da tela instantaneamente, dando tempo para o jogador ler quem venceu.
 
-Boa sorte no desenvolvimento deste desafio e aproveite para aprender e se divertir enquanto progride pelos níveis!
+## 🚀 Como Executar o Programa
 
-Equipe de Ensino - MateCheck
+Para ver o jogo em ação, basta seguir estes passos no terminal:
+
+1.  **Clone o repositório:**
+
+    ```bash
+    git clone https://github.com/Cursos-TI/desafio-l-gica-super-trunfo-GustavGregory.git
+    ```
+
+2.  **Entre na pasta do projeto:**
+
+    ```bash
+    cd desafio-l-gica-super-trunfo-GustavGregory
+    ```
+
+3.  **Compile o arquivo C:**
+
+    ```bash
+    gcc logicaSuperTrunfo.c -o meu_jogo_logica
+    ```
+
+4.  **Execute e divirta-se:**
+
+    ```bash
+    ./meu_jogo_logica
+    ```
+
+-----
+
+Resolver este desafio foi um passo muito importante para entender como estruturar um programa interativo em C. Gostei muito de aplicar a lógica de `switch` e `if-else` para criar algo funcional e divertido. Estou pronto para o próximo nível\!
